@@ -12,13 +12,15 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 import nltk
+@st.cache_resource
+def load_tokenizer():
+    try:
+        nltk.data.find('tokenizers/punkt')
+    except LookupError:
+        nltk.download('punkt')
+    return True
 
-try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    nltk.download('punkt')
-
-from nltk.tokenize import sent_tokenize
+load_tokenizer()
 
 
 # ============================================
