@@ -5,14 +5,18 @@ import re
 import networkx as nx
 import pdfplumber
 from docx import Document
-import nltk
+
 
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-# Download tokenizer
-nltk.download('punkt')
+import nltk
+
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
 
 from nltk.tokenize import sent_tokenize
 
